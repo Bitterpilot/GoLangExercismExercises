@@ -11,13 +11,9 @@ import (
 // x = a string that is parsed into the function
 // empty string = "you,"
 func ShareWith(name string) string {
-	ul := []string{"One for", "", "one for me."}
-	switch name {
-	case "":
+	ul := []string{"One for", name + ",", "one for me."}
+	if name == "" {
 		ul[1] = "you,"
-		return strings.Join(ul, " ")
-	default:
-		ul[1] = name + ","
-		return strings.Join(ul, " ")
 	}
+	return strings.Join(ul, " ")
 }
