@@ -1,17 +1,23 @@
-// Package twofer should have a package comment that summarizes what it's about.
-// https://golang.org/doc/effective_go.html#commentary
+// Package twofer has one function ShareWith
 package twofer
 
 import (
-	"fmt"
+	"strings"
 )
 
-// ShareWith should have a comment documenting it.
+// ShareWith takes a string and returns
+// One for x, one for me.
+// where
+// x = a string that is parsed into the function
+// empty string = "you,"
 func ShareWith(name string) string {
+	ul := []string{"One for", "", "one for me."}
 	switch name {
 	case "":
-		return "One for you, one for me."
+		ul[1] = "you,"
+		return strings.Join(ul, " ")
 	default:
-		return fmt.Sprintf("One for %s, one for me.", name)
+		ul[1] = name + ","
+		return strings.Join(ul, " ")
 	}
 }
