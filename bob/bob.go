@@ -7,23 +7,28 @@ import (
 	"strings"
 )
 
-var isLetter = regexp.MustCompile(`^[a-zA-Z]+$`).MatchString
+var isLetter = regexp.MustCompile(`[a-zA-Z]+`).MatchString
+var isWhiteSpace = regexp.MustCompile(`\s{2}`).MatchString
 
-// Hey takes in a remark and responds appropriatly
+// Hey takes in a remark and responds appropriately
 func Hey(remark string) string {
 	switch true {
-	case (strings.HasSuffix(remark, "?") && remark == strings.ToUpper(remark)):
-		// if you yell a question at him.
-		return "Calm down, I know what I'm doing!"
-	case strings.HasSuffix(remark, "?"):
-		// if you ask him a question.
-		return "Sure."
-	case (remark == strings.ToUpper(remark) && !(isLetter(remark))):
+	case strings.HasSuffix(strings.TrimRight(remark, " "), "?"):
+		switch {
+		case (remark == strings.ToUpper(remark) && isLetter(remark)):
+			// if you yell a question at him.
+			return "Calm down, I know what I'm doing!"
+		default:
+			// if you ask him a question.
+			return "Sure."
+
+		}
+	case (remark == strings.ToUpper(remark) && isLetter(remark)):
 		// if you yell at him.
 		return "Whoa, chill out!"
-	// case gibberish:
-	// if you address him without actually saying anything.
-	// return "Fine. Be that way!"
+	case remark == "" || (isWhiteSpace(remark) && !isLetter(remark)):
+		// if you address him without actually saying anything.
+		return "Fine. Be that way!"
 	default:
 		// to anything else.
 		return "Whatever."
