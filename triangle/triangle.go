@@ -5,20 +5,30 @@ import (
 	"sort"
 )
 
-type Kind
 // Kind holds the kind of triangle as an int.
+type Kind int
 
 // Declare diffrent types of triangle
 const (
-    NaT // not a triangle
-    Equ // equilateral
-    Iso // isosceles
-    Sca // scalene
+	NaT = iota // not a triangle
+	Equ        // equilateral
+	Iso        // isosceles
+	Sca        // scalene
 )
 
 // KindFromSides should have a comment documenting it.
 func KindFromSides(a, b, c float64) Kind {
 	var k Kind
+	switch {
+	case a <= 0 || b <= 0 || c <= 0 || inequality(a, b, c):
+		k = NaT
+	case a == b && b == c:
+		k = Equ
+	case a == b || b == c || a == c:
+		k = Iso
+	default:
+		k = Sca
+	}
 	return k
 }
 
