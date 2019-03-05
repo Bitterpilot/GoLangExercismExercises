@@ -2,6 +2,7 @@
 package triangle
 
 import (
+	"math"
 	"sort"
 )
 
@@ -20,7 +21,7 @@ const (
 func KindFromSides(a, b, c float64) Kind {
 	var k Kind
 	switch {
-	case negative(a, b, c) || inequality(a, b, c):
+	case infinite(a,b,c) || negative(a, b, c) || inequality(a, b, c):
 		k = NaT
 	case a == b && b == c:
 		k = Equ
@@ -54,6 +55,18 @@ func inequality(a, b, c float64) bool {
 func negative(a, b, c float64) bool {
 	switch {
 	case a <= 0 || b <= 0 || c <= 0:
+		return true
+	default:
+		return false
+	}
+}
+
+
+// tests for infinite sides, the negative infinity case would be handled by the 
+// func negative()
+func infinite(a,b,c float64) bool {
+	switch  {
+	case a == math.Inf(1) || b == math.Inf(1) || c == math.Inf(1):
 		return true
 	default:
 		return false
