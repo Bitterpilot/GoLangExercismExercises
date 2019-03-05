@@ -20,7 +20,7 @@ const (
 func KindFromSides(a, b, c float64) Kind {
 	var k Kind
 	switch {
-	case a <= 0 || b <= 0 || c <= 0 || inequality(a, b, c):
+	case negative(a, b, c) || inequality(a, b, c):
 		k = NaT
 	case a == b && b == c:
 		k = Equ
@@ -48,4 +48,14 @@ func inequality(a, b, c float64) bool {
 		return false
 	}
 	return true
+}
+
+// tests for negative sides
+func negative(a, b, c float64) bool {
+	switch {
+	case a <= 0 || b <= 0 || c <= 0:
+		return true
+	default:
+		return false
+	}
 }
