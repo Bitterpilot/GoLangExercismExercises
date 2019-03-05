@@ -51,7 +51,7 @@ func inequality(a, b, c float64) bool {
 	return true
 }
 
-// tests for negative sides
+// tests for negative or zero sides
 func negative(a, b, c float64) bool {
 	switch {
 	case a <= 0 || b <= 0 || c <= 0:
