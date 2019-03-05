@@ -5,6 +5,9 @@
 // https://golang.org/doc/effective_go.html#commentary
 package triangle
 
+import (
+	"sort"
+)
 
 // Notice KindFromSides() returns this type. Pick a suitable data type.
 type Kind
@@ -25,4 +28,22 @@ func KindFromSides(a, b, c float64) Kind {
 	// If you leave them in, reviewers may protest!
 	var k Kind
 	return k
+}
+
+// tests for a inequality triangle
+func inequality(a, b, c float64) bool {
+	// collect and sort side lengths in ascending order
+	lengths := []float64{a, b, c}
+	sort.Float64s(lengths)
+
+	// select the largest value for z
+	z := lengths[2]
+	// use the other values for x and y
+	x, y := lengths[0], lengths[1]
+
+	// test for basic inequality
+	if (x + y) >= z {
+		return false
+	}
+	return true
 }
