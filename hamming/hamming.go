@@ -13,7 +13,7 @@ func Distance(a, b string) (int, error) {
 		bS := []byte(b)
 		var count int
 		for i, v := range aS {
-			if v != bS[i]{
+			if v != bS[i] {
 				count++
 			}
 		}
