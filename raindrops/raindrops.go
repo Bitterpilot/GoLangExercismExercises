@@ -23,7 +23,7 @@ func Convert(n int) string {
 	if n%7 == 0 {
 		output += "Plong"
 	}
-	if n%3 != 0 && n%5 != 0 && n%7 != 0 {
+	if output == "" {
 		output += strconv.Itoa(n)
 	}
 
