@@ -1,15 +1,13 @@
-// This is a "stub" file.  It's a little start on your solution.
-// It's not a complete solution though; you have to write some code.
-
-// Package proverb should have a package comment that summarizes what it's about.
-// https://golang.org/doc/effective_go.html#commentary
+// Package proverb writes proverbs
 package proverb
 
-// Proverb should have a comment documenting it.
+// Proverb takes a slice of strings containing nouns for a proverb.
+// When parssing in the nouns "nail", "shoe" and "horse" the proverb is
+// returned as follows:
+//
+// "For want of a nail the shoe was lost.",
+// "For want of a shoe the horse was lost.",
+// "And all for the want of a nail."
 func Proverb(rhyme []string) []string {
-	// Write some code here to pass the test suite.
-	// Then remove all the stock comments.
-	// They're here to help you get started but they only clutter a finished solution.
-	// If you leave them in, reviewers may protest!
 	return []string{}
 }
